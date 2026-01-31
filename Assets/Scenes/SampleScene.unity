@@ -163,6 +163,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984e034f618da6a49a8b3ac8dc30806b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _mainCamera: {fileID: 7926569743660585128, guid: 763842e29aa073a44913d7e031cb52c5, type: 3}
+  _mainDirectionalLight: {fileID: 4678400458037842894, guid: 78f596711518c0b46a03768a5c19807a, type: 3}
+  _backgroundScreen: {fileID: 308400657682179151, guid: df17d14e55afed948af59d0fad086c6e, type: 3}
+  _loadingScreen: {fileID: 6497598159779684903, guid: c8e6f7ba0ac9baf478279da516f4bb1d, type: 3}
+  _dog: {fileID: 4394772258377394113, guid: 98d710f79452e934187fcd04baa0376a, type: 3}
+  _box: {fileID: 814256667974101185, guid: 3f67a34697550d4408fc4a8a316533ec, type: 3}
+  _square: {fileID: 1905959982320648407, guid: bdeb68bbd55eed64988ecf1f316c94a4, type: 3}
+  _circle: {fileID: 1699926243312309044, guid: a166151c371b13d428c8040fc81dd8b6, type: 3}
+  _inputHandler: {fileID: 7821345400916161710, guid: 163d3c08ba0aab64a98912d2acd05430, type: 3}
+  _materialManager: {fileID: 2388422156445168481, guid: a6e3cce93c6a7c348ba1220fc7678f2e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
