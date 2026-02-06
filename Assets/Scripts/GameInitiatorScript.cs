@@ -14,12 +14,20 @@ public class GameInitiatorScript : MonoBehaviour
     [SerializeField] private GameObject _box;
     [SerializeField] private GameObject _square;
     [SerializeField] private GameObject _circle;
+    [SerializeField] private GameObject _factory;
     [SerializeField] private InputHandler _inputHandler;
     [SerializeField] private MaterialManager _materialManager;
+
+    public static GameInitiatorScript Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+        DontDestroyOnLoad(this);
+    }
     private async void Start()
     {
         BindObjects();
-
         await InitializeObjects();
         await CreateObjects();
     }
@@ -42,9 +50,10 @@ public class GameInitiatorScript : MonoBehaviour
     private async UniTask CreateObjects()
     {
         _backgroundScreen = Instantiate(_backgroundScreen);
-        _dog = Instantiate(_dog);
-        _box = Instantiate(_box);
-        _square = Instantiate(_square);
-        _circle = Instantiate(_circle);
+        //_dog = Instantiate(_dog);
+        //_box = Instantiate(_box);
+        //_square = Instantiate(_square);
+        //_circle = Instantiate(_circle);
+        _factory = Instantiate(_factory);   
     }
 }
