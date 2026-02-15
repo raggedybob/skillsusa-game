@@ -129,19 +129,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1228398366423348047, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_Size.x
-      value: 0.9642364
+      value: 6.1513968
       objectReference: {fileID: 0}
     - target: {fileID: 1228398366423348047, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_Size.y
-      value: 0.73721075
+      value: 8.036792
       objectReference: {fileID: 0}
     - target: {fileID: 1228398366423348047, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_Offset.x
-      value: -0.011516809
+      value: -0.046723843
       objectReference: {fileID: 0}
     - target: {fileID: 1228398366423348047, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_Offset.y
-      value: -0.28866106
+      value: 0.0047307014
       objectReference: {fileID: 0}
     - target: {fileID: 1228398366423348047, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
@@ -149,11 +149,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1228398366423348047, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
+      value: 6.25
       objectReference: {fileID: 0}
     - target: {fileID: 1228398366423348047, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.28
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4042406165399459798, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_Name
@@ -166,18 +166,22 @@ PrefabInstance:
     - target: {fileID: 4114915485221824583, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6007857137893288414, guid: 9228671e2aa2c2941b1ec2dc8a77ab04, type: 3}
+      objectReference: {fileID: -2225942082661296427, guid: d6f2f3ee2986d3042a11c1d8d3fb1107, type: 3}
+    - target: {fileID: 4114915485221824583, guid: 062f329706cec99489501d12b37ef75f, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5729138662208270590, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5729138662208270590, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5729138662208270590, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5729138662208270590, guid: 062f329706cec99489501d12b37ef75f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -294,6 +298,18 @@ PrefabInstance:
       value: backgroundScreen
       objectReference: {fileID: 0}
     - target: {fileID: 532500207295891552, guid: df17d14e55afed948af59d0fad086c6e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 532500207295891552, guid: df17d14e55afed948af59d0fad086c6e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 532500207295891552, guid: df17d14e55afed948af59d0fad086c6e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 532500207295891552, guid: df17d14e55afed948af59d0fad086c6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -338,6 +354,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df17d14e55afed948af59d0fad086c6e, type: 3}
+--- !u!20 &1055772052 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7926569743660585128, guid: 763842e29aa073a44913d7e031cb52c5, type: 3}
+  m_PrefabInstance: {fileID: 1706994800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1514114596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -390,6 +411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InputManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7821345400916161710, guid: 163d3c08ba0aab64a98912d2acd05430, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1055772052}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

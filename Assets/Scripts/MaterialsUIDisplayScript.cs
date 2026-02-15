@@ -4,7 +4,7 @@ using UnityEngine;
 public class MaterialsUIDisplayScript : MonoBehaviour
 {
 
-    public TMP_Text Material1Display;
+    [SerializeField] private TMP_Text Material1Display;
     
     void Start()
     {
