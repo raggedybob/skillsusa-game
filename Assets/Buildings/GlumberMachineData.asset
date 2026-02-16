@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3d9759ff618ec458a8ed0244cfc642, type: 3}
+  m_Name: GlumberMachineData
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingName: Glumber Machine
+  description: 'Produces 1 Glumber per second.
+
+
+    Cost: 15 Gloop '
+  icon: {fileID: 4786738944179531349, guid: 69a2f2f92b0971a45aeec5d827e7628b, type: 3}
+  prefab: {fileID: 7733402784026053791, guid: cc37fb57177a14d49af7fd7a6b7f8cc4, type: 3}
+  size: {x: 2, y: 2}
+  costs:
+  - type: 0
+    amount: 15

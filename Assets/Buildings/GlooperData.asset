@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3d9759ff618ec458a8ed0244cfc642, type: 3}
+  m_Name: GlooperData
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingName: Glooper
+  description: 'Produces 1 Gloop per second.
+
+
+    Cost: 10 Gloop, 5 Glumber '
+  icon: {fileID: -3579020960623227675, guid: 8495b697d5f2eac42967c662759c3ca8, type: 3}
+  prefab: {fileID: 6452216303043819331, guid: 9475e4f8fecf7024883dc148e95fa3a8, type: 3}
+  size: {x: 1, y: 2}
+  costs:
+  - type: 0
+    amount: 10
+  - type: 1
+    amount: 5

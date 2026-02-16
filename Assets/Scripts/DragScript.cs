@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PhysicsDrag2D : MonoBehaviour
 {
     TargetJoint2D joint;
+    public bool IsBeingDragged { get; private set; }
 
     void Update()
     {
@@ -14,7 +15,7 @@ public class PhysicsDrag2D : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             RaycastHit2D hit = Physics2D.Raycast(mouseWorld, Vector2.zero);
-
+            IsBeingDragged = true;
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
                 joint = gameObject.AddComponent<TargetJoint2D>();
@@ -30,6 +31,9 @@ public class PhysicsDrag2D : MonoBehaviour
             joint.target = mouseWorld;
 
         if (Mouse.current.leftButton.wasReleasedThisFrame && joint != null)
+        {
             Destroy(joint);
+            IsBeingDragged = false;
+        }
     }
 }
