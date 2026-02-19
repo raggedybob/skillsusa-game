@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 023299ccaf7fb0146a47fed388169bad
+guid: 1c994f89df63388459c31e1b61039e5f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5163241514917341578
-    second: blockhovered_0
+      213: 4078853075906739164
+    second: GlepSmith_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blockhovered_0
+      name: GlepSmith_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 48
+        height: 32
+      alignment: 9
+      pivot: {x: 0.25, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a89a2324dc487a740800000000000000
-      internalID: 5163241514917341578
+      spriteID: cdb3e68034ffa9830800000000000000
+      internalID: 4078853075906739164
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f565b428c8dafc34b823beddf776141a
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      blockhovered_0: 5163241514917341578
+      GlepSmith_0: 4078853075906739164
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class CameraMovementScript : MonoBehaviour
 {
-    [SerializeField] private float dragSpeed = 1f;
 
     private Vector3 lastMousePosition;
     public bool canMove = false;
+    private Vector3 dragOrigin;
     [SerializeField] private Camera cam;
     [SerializeField] private float zoomSpeed = 5f;
     [SerializeField] private float minZoom = 3f;
@@ -30,22 +30,21 @@ public class CameraMovementScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            lastMousePosition = Input.mousePosition;
+            dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
         }
 
         if (Input.GetMouseButton(1))
         {
-            Vector3 delta = Input.mousePosition - lastMousePosition;
-            Vector3 move = new Vector3(-delta.x, -delta.y, 0f) * dragSpeed * Time.deltaTime;
+            Vector3 currentPos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 difference = dragOrigin - currentPos;
 
-            transform.Translate(move);
+            transform.position += difference;
+
             transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, minX, maxX),
-            Mathf.Clamp(transform.position.y, minY, maxY),
-            transform.position.z
-);
-
-            lastMousePosition = Input.mousePosition;
+                Mathf.Clamp(transform.position.x, minX, maxX),
+                Mathf.Clamp(transform.position.y, minY, maxY),
+                transform.position.z
+            );
         }
         float scroll = Input.mouseScrollDelta.y;
 

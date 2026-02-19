@@ -15,8 +15,7 @@ public class OpenBuildMenuScript : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log("Build Menu Button Clicked");
-        if (createMenu.transform.localPosition == closedPosition)
+        if (!BuildManagerScript.Instance.IsBuildMode)
         {
             OpenBuildMenu();
             SoundFXManager.Instance.PlaySFX(openBuildSoundClip, transform, 1f);

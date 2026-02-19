@@ -25,3 +25,6 @@ MonoBehaviour:
     amount: 10
   - type: 1
     amount: 5
+  producesMaterial: 0
+  amountPerTick: 1
+  productionInterval: 1

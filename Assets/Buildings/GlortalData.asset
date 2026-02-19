@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3d9759ff618ec458a8ed0244cfc642, type: 3}
+  m_Name: GlortalData
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingName: Glortal
+  description: Finish the game.
+  icon: {fileID: -6405908525576180035, guid: 3e56d135ce9a12e4d9be1616012332ba, type: 3}
+  prefab: {fileID: 1293968175320298512, guid: 25cc1102b6139d4499a1d8a229f71a52, type: 3}
+  size: {x: 1, y: 1}
+  costs:
+  - type: 0
+    amount: 200
+  - type: 1
+    amount: 100
+  - type: 2
+    amount: 50
+  - type: 3
+    amount: 25
+  - type: 4
+    amount: 1000
+  sellValue: 0
+  producesMaterial: 0
+  amountPerTick: 0
+  productionInterval: 0

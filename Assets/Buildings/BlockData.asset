@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: BlockData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
   buildingName: Block
-  description: 'A basic building block.
-
-
-    Cost: 1 Gloop'
+  description: "A basic building block. \n\nCost: 1 Gloop"
   icon: {fileID: 21300000, guid: c684f23abe6e1374c8e089453a818ba6, type: 3}
   prefab: {fileID: 5048542113660037540, guid: b015dc9ec9dc38643a8b8b2e5c9d0707, type: 3}
   size: {x: 1, y: 1}
   costs:
   - type: 0
     amount: 1
+  sellValue: 0
+  producesMaterial: 0
+  amountPerTick: 0
+  productionInterval: 0

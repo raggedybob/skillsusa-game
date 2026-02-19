@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3d9759ff618ec458a8ed0244cfc642, type: 3}
+  m_Name: AlglepmyStationData
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingName: Alglepmy Station
+  description: Produces 1 Glep Juice every 10 seconds
+  icon: {fileID: -3726127427937810241, guid: acb921a3e59857646aca171d5a9de071, type: 3}
+  prefab: {fileID: 0}
+  size: {x: 1, y: 1}
+  costs: []
+  sellValue: 0
+  producesMaterial: 0
+  amountPerTick: 0
+  productionInterval: 0

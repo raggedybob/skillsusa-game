@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class OpenSellMenuScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void OnClick()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(!BuildManagerScript.Instance.IsSellMode)
+        {
+            BuildManagerScript.Instance.EnterSellMode();
+        }
+        else
+        {
+            BuildManagerScript.Instance.ExitSellMode();
+        }
     }
 }

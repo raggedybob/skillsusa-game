@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class UIManagerScript : MonoBehaviour
 {
-    public static UIManagerScript Instance;
-
     [SerializeField] private Sprite noObjectSelected;
     [SerializeField] private Image selectedIcon;
     [SerializeField] private TMP_Text selectedName;
@@ -14,7 +12,6 @@ public class UIManagerScript : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         UpdateSelectedDisplay(new BuildingData
         {
             buildingName = "None",

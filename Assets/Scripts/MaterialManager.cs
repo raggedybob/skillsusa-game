@@ -12,8 +12,14 @@ public class MaterialManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
         foreach (MaterialType type in System.Enum.GetValues(typeof(MaterialType)))
         {
             resources[type] = 0;

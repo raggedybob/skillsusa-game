@@ -151,6 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277ad3c8356a49748ba66d76d3b00526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InsertGlepScript
-  hoverTimeRequired: 2
+  hoverTimeRequired: 1
   spriteRenderer: {fileID: 6824660580871726873}
   activeSprite: {fileID: 8670799725474300368, guid: e74e0f8978d19a64b9e7c5b25fdb18ea, type: 3}

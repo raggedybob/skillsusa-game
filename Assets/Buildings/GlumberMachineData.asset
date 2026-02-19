@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlumberMachineData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
   buildingName: Glumber Machine
-  description: 'Produces 1 Glumber per second.
+  description: 'Produces 1 Glumber every 2 seconds.
 
 
     Cost: 15 Gloop '
@@ -23,3 +23,6 @@ MonoBehaviour:
   costs:
   - type: 0
     amount: 15
+  producesMaterial: 1
+  amountPerTick: 1
+  productionInterval: 2

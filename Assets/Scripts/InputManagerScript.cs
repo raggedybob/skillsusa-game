@@ -36,4 +36,3 @@ public class InputHandler : MonoBehaviour
         clickable?.OnClicked();
     }
 }
-

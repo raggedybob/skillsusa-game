@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Resources;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,16 +8,26 @@ public class BuildManagerScript : MonoBehaviour
 {
     public static BuildManagerScript Instance;
     public GameObject selectedBuilding;
-    private Dictionary<Vector2Int, GameObject> occupiedTiles =
-    new Dictionary<Vector2Int, GameObject>();
+    private Dictionary<Vector2Int, BuildingData> occupiedTiles =
+    new Dictionary<Vector2Int, BuildingData>();
+
+    private Dictionary<Vector2Int, GameObject> placedObjects =
+        new Dictionary<Vector2Int, GameObject>();
+
     private GameObject currentPreview;
     private SpriteRenderer previewRenderer;
     public event System.Action<BuildingData> OnSelectedBuildingChanged;
+    [SerializeField] private int minX = -20;
+    [SerializeField] private int maxX = 20;
+    [SerializeField] private int minY = 0;
+    [SerializeField] private int maxY = 10;
+    public bool IsSellMode { get; private set; }
 
     private void Awake()
     {
         selectedBuilding = null;
         Instance = this;
+        IsSellMode = false;
     }
 
     public bool IsBuildMode { get; private set; }
@@ -24,6 +35,7 @@ public class BuildManagerScript : MonoBehaviour
     public void EnterBuildMode()
     {
         IsBuildMode = true;
+        IsSellMode = false;
     }
 
     public void ExitBuildMode()
@@ -32,11 +44,20 @@ public class BuildManagerScript : MonoBehaviour
     }
     private void Update()
     {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2Int gridPos = WorldToGrid(mousePos);
+
+        if (IsSellMode && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            TrySellBuilding(gridPos);
+        }
+
         if (!IsBuildMode || SelectedBuilding == null || currentPreview == null)
             return;
 
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Vector2Int gridPos = WorldToGrid(mousePos);
+        gridPos.x = Mathf.Clamp(gridPos.x, minX, maxX - SelectedBuilding.size.x + 1);
+        gridPos.y = Mathf.Clamp(gridPos.y, minY, maxY - SelectedBuilding.size.y + 1);
+
 
         Vector3 snappedPosition = new Vector3(gridPos.x, gridPos.y, 0f);
         currentPreview.transform.position = snappedPosition;
@@ -57,6 +78,16 @@ public class BuildManagerScript : MonoBehaviour
     }
     private bool CanPlace(Vector2Int origin)
     {
+        if (origin.x < minX || origin.y < minY)
+            return false;
+
+        if (origin.x + SelectedBuilding.size.x - 1 > maxX)
+            return false;
+
+        if (origin.y + SelectedBuilding.size.y - 1 > maxY)
+            return false;
+
+        // Check if area is free
         for (int x = 0; x < SelectedBuilding.size.x; x++)
         {
             for (int y = 0; y < SelectedBuilding.size.y; y++)
@@ -68,8 +99,13 @@ public class BuildManagerScript : MonoBehaviour
             }
         }
 
-        return true;
+        // Support rule switch
+        if (SelectedBuilding.isBlock)
+            return HasAdjacentSupport(origin);
+        else
+            return HasFullBottomSupport(origin);
     }
+
 
     public BuildingData SelectedBuilding { get; private set; }
 
@@ -104,20 +140,23 @@ public class BuildManagerScript : MonoBehaviour
             Debug.Log("Not enough resources!");
             return;
         }
-
+        MaterialManager.Instance.Spend(SelectedBuilding.costs);
         Vector3 spawnPos = new Vector3(gridPos.x, gridPos.y, 0f);
 
-        GameObject building = Instantiate(SelectedBuilding.prefab, spawnPos, Quaternion.identity);
+        GameObject newBuilding = Instantiate(SelectedBuilding.prefab, spawnPos, Quaternion.identity);
 
         for (int x = 0; x < SelectedBuilding.size.x; x++)
         {
             for (int y = 0; y < SelectedBuilding.size.y; y++)
             {
                 Vector2Int tile = new Vector2Int(gridPos.x + x, gridPos.y + y);
-                occupiedTiles.Add(tile, building);
+
+                occupiedTiles[tile] = SelectedBuilding;   
+                placedObjects[tile] = newBuilding;        
             }
         }
-        MaterialManager.Instance.Spend(SelectedBuilding.costs);
+        InsertGlepScript buildingScript = newBuilding.GetComponent<InsertGlepScript>();
+        buildingScript.Initialize(SelectedBuilding, gridPos);
     }
     public void ClearSelectedBuilding()
     {
@@ -130,5 +169,107 @@ public class BuildManagerScript : MonoBehaviour
         }
 
         OnSelectedBuildingChanged?.Invoke(null);
+    }
+    private bool HasAdjacentSupport(Vector2Int origin)
+    {
+        // Floor
+        if (origin.y == minY)
+            return true;
+
+        // Roof
+        if (origin.y + SelectedBuilding.size.y - 1 == maxY)
+            return true;
+
+        Vector2Int[] directions =
+        {
+        Vector2Int.up,
+        Vector2Int.down,
+        Vector2Int.left,
+        Vector2Int.right
+    };
+
+        for (int x = 0; x < SelectedBuilding.size.x; x++)
+        {
+            for (int y = 0; y < SelectedBuilding.size.y; y++)
+            {
+                Vector2Int tile = new Vector2Int(origin.x + x, origin.y + y);
+
+                foreach (var dir in directions)
+                {
+                    if (occupiedTiles.ContainsKey(tile + dir))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private bool HasFullBottomSupport(Vector2Int origin)
+    {
+        if (origin.y == minY)
+            return true;
+
+        for (int x = 0; x < SelectedBuilding.size.x; x++)
+        {
+            Vector2Int belowTile = new Vector2Int(origin.x + x, origin.y - 1);
+
+            if (!occupiedTiles.TryGetValue(belowTile, out BuildingData data))
+                return false;
+
+            if (!data.isBlock)
+                return false;
+        }
+
+        return true;
+    }
+
+    public void EnterSellMode()
+    {
+        IsSellMode = true;
+        IsBuildMode = false;
+        ClearSelectedBuilding();
+    }
+
+    public void ExitSellMode()
+    {
+        IsSellMode = false;
+    }
+
+    private void TrySellBuilding(Vector2Int gridPos)
+    {
+        if (!occupiedTiles.ContainsKey(gridPos))
+            return;
+
+        if (!placedObjects.TryGetValue(gridPos, out GameObject building))
+            return;
+
+
+        InsertGlepScript script = building.GetComponent<InsertGlepScript>();
+        BuildingData data = script.GetBuildingData();
+
+        foreach (var cost in data.costs)
+        {
+            MaterialManager.Instance.Add(
+                cost.type,
+                cost.amount / 2
+            );
+        }
+
+        for (int x = 0; x < data.size.x; x++)
+        {
+            for (int y = 0; y < data.size.y; y++)
+            {
+                Vector2Int tile = new Vector2Int(
+                    script.GridPosition.x + x,
+                    script.GridPosition.y + y
+                );
+
+                occupiedTiles.Remove(tile);
+                placedObjects.Remove(tile);
+                GameStateManager.Instance.occupiedTiles.Remove(tile);
+            }
+        }
+        Destroy(building);
     }
 }

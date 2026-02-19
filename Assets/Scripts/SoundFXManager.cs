@@ -8,7 +8,14 @@ public class SoundFXManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void PlaySFX(AudioClip audioClip, Transform spawnTransform, float volume)

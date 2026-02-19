@@ -10,6 +10,20 @@ public class InsertGlepScript : MonoBehaviour
     private bool isActive = false;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite activeSprite;
+    private BuildingData data;
+
+    public Vector2Int GridPosition { get; private set; }
+
+    public void Initialize(BuildingData data, Vector2Int gridPos)
+    {
+        this.data = data;
+        this.GridPosition = gridPos;
+    }
+
+    public BuildingData GetBuildingData()
+    {
+        return data;
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -21,7 +35,7 @@ public class InsertGlepScript : MonoBehaviour
                 return;
             currentHoverTime += Time.deltaTime;
 
-            if (currentHoverTime >= hoverTimeRequired)
+            if (currentHoverTime >= hoverTimeRequired && gameObject.GetComponent<SpriteRenderer>().color == Color.white)
             {
                 ActivateBuilding(glep);
             }
@@ -45,19 +59,23 @@ public class InsertGlepScript : MonoBehaviour
     {
         currentGlep = glep;
 
-        glep.gameObject.SetActive(false); // hide glep
+        currentGlep.Consume();
 
-        // change sprite
         spriteRenderer.sprite = activeSprite;
         isActive = true;
         StartCoroutine(ProductionLoop());
     }
+
     private IEnumerator ProductionLoop()
     {
         while (isActive)
         {
-            yield return new WaitForSeconds(1f);
-            MaterialManager.Instance.Add(MaterialType.Gloop, 1);
+            yield return new WaitForSeconds(data.productionInterval);
+
+            MaterialManager.Instance.Add(
+                data.producesMaterial,
+                data.amountPerTick
+            );
         }
     }
 }
