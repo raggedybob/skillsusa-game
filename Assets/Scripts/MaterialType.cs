@@ -4,5 +4,6 @@ public enum MaterialType
     Glumber,
     Gletal,
     GlepJuice,
-    Money
+    Money,
+    None
 }

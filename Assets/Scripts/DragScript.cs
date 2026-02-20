@@ -5,14 +5,25 @@ public class PhysicsDrag2D : MonoBehaviour
 {
     TargetJoint2D joint;
     public static PhysicsDrag2D currentlyDragged;
+    private float timeRemaining;
+    [SerializeField] private float jumpInterval = 10f;
+    [SerializeField] private float minForce = 5f;
+    [SerializeField] private float maxForce = 5f;
+
     public bool IsBeingDragged { get; private set; }
 
     private void Awake()
     {
+        timeRemaining = jumpInterval;
         IsBeingDragged = false;
     }
     void Update()
     {
+        timeRemaining -= Time.deltaTime;
+        if(timeRemaining <= 0f)
+        {
+            Jump();
+        }
         if (BuildManagerScript.Instance.selectedBuilding == null)
         {
             Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(
@@ -40,8 +51,10 @@ public class PhysicsDrag2D : MonoBehaviour
             }
 
             if (joint != null)
+            {
                 joint.target = mouseWorld;
-
+                timeRemaining = jumpInterval;
+            }
             if (Mouse.current.leftButton.wasReleasedThisFrame && joint != null)
             {
                 Destroy(joint);
@@ -50,11 +63,6 @@ public class PhysicsDrag2D : MonoBehaviour
             }
 
         }
-        //if (currentlyDragged != this && IsBeingDragged)
-        //{
-
-        //    Walk();
-        //}
     }
     public void ForceRelease()
     {
@@ -73,9 +81,11 @@ public class PhysicsDrag2D : MonoBehaviour
         ForceRelease();
         gameObject.SetActive(false);
     }
-
-    //public void Walk()
-    //{
-
-    //}
+    private void Jump()
+    {
+        Vector2 randomDirection = Random.insideUnitCircle;
+        Vector2 forceVector = randomDirection.normalized * Random.Range(minForce, maxForce);
+        gameObject.GetComponent<Rigidbody2D>().AddForce(forceVector, ForceMode2D.Impulse);
+        timeRemaining = jumpInterval;
+    }
 }

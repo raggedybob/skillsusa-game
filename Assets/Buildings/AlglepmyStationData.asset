@@ -13,12 +13,21 @@ MonoBehaviour:
   m_Name: AlglepmyStationData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
   buildingName: Alglepmy Station
-  description: Produces 1 Glep Juice every 10 seconds
-  icon: {fileID: -3726127427937810241, guid: acb921a3e59857646aca171d5a9de071, type: 3}
-  prefab: {fileID: 0}
-  size: {x: 1, y: 1}
-  costs: []
-  sellValue: 0
-  producesMaterial: 0
-  amountPerTick: 0
-  productionInterval: 0
+  description: 'Produces 1 Glep Juice every 10 seconds.
+
+    Costs: 100 Gloop, 10
+    Gletal, 100 Money'
+  icon: {fileID: -5286271519057278873, guid: 40c1a57f3068079429e694e961ffb67b, type: 3}
+  prefab: {fileID: 2629418333763362845, guid: a2a44f537cb117c45a253cb39fa2a344, type: 3}
+  size: {x: 3, y: 3}
+  costs:
+  - type: 0
+    amount: 100
+  - type: 2
+    amount: 10
+  - type: 4
+    amount: 100
+  isBlock: 0
+  producesMaterial: 3
+  amountPerTick: 1
+  productionInterval: 10

@@ -11,7 +11,6 @@ public class BuildMenuButton : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(SelectBuilding);
-        //button.onClick.AddListener(() => AudioManagerScript.Instance.Play("Click"));    
     }
 
     private void SelectBuilding()

@@ -100,15 +100,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SellMachine_0
+      name: SellMachine
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
         height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8ee683af12149dc4eb021db8fa6936ec
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SellMachine_0: -5965451534639150018
+      SellMachine: -5965451534639150018
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

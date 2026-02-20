@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static MaterialsUIDisplayScript;
 
 public class MaterialManager : MonoBehaviour
 {
@@ -56,5 +57,13 @@ public class MaterialManager : MonoBehaviour
     public int GetAmount(MaterialType type)
     {
         return resources[type];
+    }
+    public bool Remove(MaterialType type, int amount)
+    {
+        if (!resources.ContainsKey(type)) return false;
+        if (resources[type] < amount) return false;
+
+        resources[type] -= amount;
+        return true;
     }
 }

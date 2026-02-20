@@ -47,10 +47,10 @@ public class BuildManagerScript : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2Int gridPos = WorldToGrid(mousePos);
 
-        if (IsSellMode && Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            TrySellBuilding(gridPos);
-        }
+        //if (IsSellMode && Mouse.current.leftButton.wasPressedThisFrame)
+        //{
+        //    TrySellBuilding(gridPos);
+        //}
 
         if (!IsBuildMode || SelectedBuilding == null || currentPreview == null)
             return;
@@ -224,52 +224,50 @@ public class BuildManagerScript : MonoBehaviour
         return true;
     }
 
-    public void EnterSellMode()
-    {
-        IsSellMode = true;
-        IsBuildMode = false;
-        ClearSelectedBuilding();
-    }
+    //public void EnterSellMode()
+    //{
+    //    IsSellMode = true;
+    //    IsBuildMode = false;
+    //    ClearSelectedBuilding();
+    //    sellModeIndicator.SetActive(true);
+    //}
 
-    public void ExitSellMode()
-    {
-        IsSellMode = false;
-    }
+    //public void ExitSellMode()
+    //{
+    //    IsSellMode = false;
+    //    sellModeIndicator.SetActive(false);
+    //}
 
-    private void TrySellBuilding(Vector2Int gridPos)
-    {
-        if (!occupiedTiles.ContainsKey(gridPos))
-            return;
-
-        if (!placedObjects.TryGetValue(gridPos, out GameObject building))
-            return;
+    //private void TrySellBuilding(Vector2Int gridPos)
+    //{
+    //    if (!placedObjects.TryGetValue(gridPos, out GameObject building))
+    //        return;
 
 
-        InsertGlepScript script = building.GetComponent<InsertGlepScript>();
-        BuildingData data = script.GetBuildingData();
+    //    InsertGlepScript script = building.GetComponent<InsertGlepScript>();
+    //    BuildingData data = script.GetBuildingData();
 
-        foreach (var cost in data.costs)
-        {
-            MaterialManager.Instance.Add(
-                cost.type,
-                cost.amount / 2
-            );
-        }
+    //    foreach (var cost in data.costs)
+    //    {
+    //        MaterialManager.Instance.Add(
+    //            cost.type,
+    //            cost.amount / 2
+    //        );
+    //    }
 
-        for (int x = 0; x < data.size.x; x++)
-        {
-            for (int y = 0; y < data.size.y; y++)
-            {
-                Vector2Int tile = new Vector2Int(
-                    script.GridPosition.x + x,
-                    script.GridPosition.y + y
-                );
+    //    for (int x = 0; x < data.size.x; x++)
+    //    {
+    //        for (int y = 0; y < data.size.y; y++)
+    //        {
+    //            Vector2Int tile = new Vector2Int(
+    //                script.GridPosition.x + x,
+    //                script.GridPosition.y + y
+    //            );
 
-                occupiedTiles.Remove(tile);
-                placedObjects.Remove(tile);
-                GameStateManager.Instance.occupiedTiles.Remove(tile);
-            }
-        }
-        Destroy(building);
-    }
+    //            occupiedTiles.Remove(tile);
+    //            placedObjects.Remove(tile);
+    //        }
+    //    }
+    //    Destroy(building);
+    //}
 }

@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: GlortalData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
   buildingName: Glortal
-  description: Finish the game.
+  description: 'Free the Gleps.
+
+    Costs: 200 Gloop, 100 Glumber, 50 Gletal, 25
+    Glep Juice, 1000 Money'
   icon: {fileID: -6405908525576180035, guid: 3e56d135ce9a12e4d9be1616012332ba, type: 3}
   prefab: {fileID: 1293968175320298512, guid: 25cc1102b6139d4499a1d8a229f71a52, type: 3}
-  size: {x: 1, y: 1}
+  size: {x: 5, y: 5}
   costs:
   - type: 0
     amount: 200
@@ -25,10 +28,10 @@ MonoBehaviour:
   - type: 2
     amount: 50
   - type: 3
-    amount: 25
+    amount: 20
   - type: 4
     amount: 1000
-  sellValue: 0
+  isBlock: 0
   producesMaterial: 0
   amountPerTick: 0
   productionInterval: 0

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 public class OpenBuildMenuScript : MonoBehaviour
 {
     [SerializeField] private GameObject createMenu;
+    [SerializeField] private GameObject shopMenu;
     [SerializeField] private Vector3 openPosition;
     [SerializeField] private Vector3 closedPosition;
     [SerializeField] private AudioClip openBuildSoundClip;
@@ -30,6 +31,7 @@ public class OpenBuildMenuScript : MonoBehaviour
     public void OpenBuildMenu()
     {
         Debug.Log("Opening Build Menu");
+        shopMenu.SetActive(false);
         BuildManagerScript.Instance.EnterBuildMode();
         createMenu.transform.localPosition = openPosition;
     }

@@ -182,6 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7992228ce94ff7f438d858a8fe62d3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhysicsDrag2D
+  jumpInterval: 6
+  minForce: 15
+  maxForce: 30
 --- !u!114 &7077900190376489815
 MonoBehaviour:
   m_ObjectHideFlags: 0

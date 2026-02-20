@@ -1,10 +1,7 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameEndScript : MonoBehaviour, IClickable
-{   
-    public void OnClicked()
-    {
-        Debug.Log("Game Ended");
-        Application.Quit();
-    }
+public class GameEndScript : MonoBehaviour
+{
+    // Glortal script.
 }

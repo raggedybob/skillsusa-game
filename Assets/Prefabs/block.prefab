@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2951521779341324392}
   - component: {fileID: 7067177805539573354}
   - component: {fileID: 8843765568011229538}
+  - component: {fileID: 7671203280882174699}
   m_Layer: 0
   m_Name: block
   m_TagString: Untagged
@@ -138,3 +139,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7671203280882174699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5048542113660037540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277ad3c8356a49748ba66d76d3b00526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InsertGlepScript
+  hoverTimeRequired: 9999999
+  spriteRenderer: {fileID: 7067177805539573354}
+  activeSprite: {fileID: 21300000, guid: c684f23abe6e1374c8e089453a818ba6, type: 3}

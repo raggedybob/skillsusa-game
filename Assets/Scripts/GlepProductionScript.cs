@@ -40,5 +40,17 @@ public class GlepProductionScript : MonoBehaviour
     private void ProduceGlep()
     {
         Instantiate(glepPrefab, transform.position + new Vector3(0, 10, 0), Quaternion.identity);
+        if(productionInterval > 10f)
+        {
+            productionInterval -= 0.5f; 
+        }
+        else if (productionInterval > 5f)
+        {
+            productionInterval -= 0.25f;
+        }
+        else
+        {
+            productionInterval -= 0.05f;
+        }
     }
 }

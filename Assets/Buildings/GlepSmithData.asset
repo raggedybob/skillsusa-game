@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlepSmithData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
   buildingName: Glep Smith
-  description: 'Produces 1 Gletal every 5 seconds.
+  description: 'Produces 1 Gletal every 3 seconds.
 
 
     Costs: 25 Gloop, 10 Glumber'
@@ -25,6 +25,7 @@ MonoBehaviour:
     amount: 25
   - type: 1
     amount: 10
+  isBlock: 0
   producesMaterial: 2
   amountPerTick: 1
-  productionInterval: 5
+  productionInterval: 3

@@ -16,13 +16,14 @@ MonoBehaviour:
   description: 'Produces 1 Glumber every 2 seconds.
 
 
-    Cost: 15 Gloop '
+    Cost: 10 Gloop '
   icon: {fileID: 4786738944179531349, guid: 69a2f2f92b0971a45aeec5d827e7628b, type: 3}
   prefab: {fileID: 7733402784026053791, guid: cc37fb57177a14d49af7fd7a6b7f8cc4, type: 3}
   size: {x: 2, y: 2}
   costs:
   - type: 0
-    amount: 15
+    amount: 10
+  isBlock: 0
   producesMaterial: 1
   amountPerTick: 1
   productionInterval: 2

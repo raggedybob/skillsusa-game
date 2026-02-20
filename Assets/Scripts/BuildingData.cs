@@ -10,7 +10,6 @@ public class BuildingData : ScriptableObject
     public GameObject prefab;
     public Vector2Int size = Vector2Int.one;
     public List<MaterialCost> costs;
-    public int sellValue;
     public bool isBlock;
 
     [Header("Production Settings")]

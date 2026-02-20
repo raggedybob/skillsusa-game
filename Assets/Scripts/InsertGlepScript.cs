@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InsertGlepScript : MonoBehaviour
 {
@@ -57,13 +58,20 @@ public class InsertGlepScript : MonoBehaviour
 
     private void ActivateBuilding(PhysicsDrag2D glep)
     {
-        currentGlep = glep;
+        if (gameObject.CompareTag("Glortal"))
+        {
+            SceneManager.LoadScene("EndScene");
+        }
+        else
+        {
+            currentGlep = glep;
 
-        currentGlep.Consume();
+            currentGlep.Consume();
 
-        spriteRenderer.sprite = activeSprite;
-        isActive = true;
-        StartCoroutine(ProductionLoop());
+            spriteRenderer.sprite = activeSprite;
+            isActive = true;
+            StartCoroutine(ProductionLoop());
+        }
     }
 
     private IEnumerator ProductionLoop()
@@ -72,10 +80,35 @@ public class InsertGlepScript : MonoBehaviour
         {
             yield return new WaitForSeconds(data.productionInterval);
 
-            MaterialManager.Instance.Add(
-                data.producesMaterial,
-                data.amountPerTick
-            );
+            if (ProductionManager.Instance.CurrentMode == ProductionMode.Materials)
+            {
+                // Normal production
+                MaterialManager.Instance.Add(
+                    data.producesMaterial,
+                    data.amountPerTick
+                );
+            }
+            else
+            {
+                // Money production instead
+                int sellValue = GetSellValue(data.producesMaterial);
+
+                MaterialManager.Instance.Add(
+                    MaterialType.Money,
+                    data.amountPerTick * sellValue
+                );
+            }
+        }
+    }
+    private int GetSellValue(MaterialType type)
+    {
+        switch (type)
+        {
+            case MaterialType.Gloop: return 2;
+            case MaterialType.Glumber: return 5;
+            case MaterialType.Gletal: return 10;
+            case MaterialType.GlepJuice: return 20;
+            default: return 1;
         }
     }
 }
