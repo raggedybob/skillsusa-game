@@ -15,7 +15,7 @@ public class HotbarSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField] private CanvasGroup glepStatsGroup;
     [SerializeField] private GameObject hotbarHighlight;
     [SerializeField] private GameObject ClickOnGlepText;
-
+    private GlepUnitScript assignedGlep;
     private bool hasGlep = false;
 
     void Start() 
@@ -94,6 +94,8 @@ public class HotbarSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (hit.collider != null)
         {
             GlepUnitScript glep = hit.collider.GetComponent<GlepUnitScript>();
+            assignedGlep = glep;
+            glep.combatScript.OnDeath += OnGlepDied;
             if (glep != null)
             {
                 CombatInventoryManager.Instance.AssignToSlot(glep, slotIndex);
@@ -126,9 +128,25 @@ public class HotbarSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         DisplayGlepStatsScript.Instance.UpdateSelectedDisplay(glep.data);
     }
+    private void OnGlepDied()
+    {
+        ClearPortrait();
+    }
 
     public void ClearPortrait()
     {
+        if (hasGlep)
+        {
+            var glep = CombatInventoryManager.Instance.slots[slotIndex]
+                ?.GetComponent<GlepUnitScript>();
+
+            if (assignedGlep != null)
+            {
+                assignedGlep.combatScript.OnDeath -= OnGlepDied;
+                assignedGlep = null;
+            }
+        }
+
         slotPortrait.sprite = null;
         slotPortrait.color = new Color(1, 1, 1, 0);
         hasGlep = false;

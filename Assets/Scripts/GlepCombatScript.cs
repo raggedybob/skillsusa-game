@@ -4,6 +4,7 @@ using System;
 
 public class GlepCombatScript : MonoBehaviour
 {
+    public event Action OnDeath;
     private GlepUnitScript glepUnit;
     private float currentHealth;
     private float maxHealth;
@@ -163,8 +164,9 @@ public class GlepCombatScript : MonoBehaviour
 
     void Die()
     {
+        OnDeath?.Invoke(); // notify listeners
+
         if (hpBarInstance != null) Destroy(hpBarInstance);
-        // notify hotbar slot here later
         Destroy(gameObject);
     }
 
