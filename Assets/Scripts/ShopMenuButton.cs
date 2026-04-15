@@ -15,6 +15,5 @@ public class ShopMenuButton : MonoBehaviour
     private void SelectItem()
     {
         selectedItemUIScript.Instance.UpdateItemDisplay(itemData);
-
     }   
 }

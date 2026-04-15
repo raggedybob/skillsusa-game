@@ -7,6 +7,8 @@ TagManager:
   - Glep
   - boostertext
   - Glortal
+  - Enemy
+  - Factory
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Line
   - 
   - 
   - 
@@ -43,6 +45,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Line
+    uniqueID: 832354495
     locked: 0
   m_RenderingLayers:
   - Default

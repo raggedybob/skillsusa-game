@@ -9,6 +9,7 @@ public class PhysicsDrag2D : MonoBehaviour
     [SerializeField] private float jumpInterval = 10f;
     [SerializeField] private float minForce = 5f;
     [SerializeField] private float maxForce = 5f;
+    [SerializeField] private AudioClip jumpSoundClip;
 
     public bool IsBeingDragged { get; private set; }
 
@@ -83,6 +84,7 @@ public class PhysicsDrag2D : MonoBehaviour
     }
     private void Jump()
     {
+        SoundFXManager.Instance.PlaySFX(jumpSoundClip, transform, .5f);
         Vector2 randomDirection = Random.insideUnitCircle;
         Vector2 forceVector = randomDirection.normalized * Random.Range(minForce, maxForce);
         gameObject.GetComponent<Rigidbody2D>().AddForce(forceVector, ForceMode2D.Impulse);

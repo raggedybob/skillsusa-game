@@ -15,8 +15,6 @@ public class StabilityManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
-
         Stability = 700;
         StartCoroutine(UpdateStability());
     }

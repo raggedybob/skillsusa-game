@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec40a779b1534c94d8a452436da873ef, type: 3}
+  m_Name: New Glep Armor
+  m_EditorClassIdentifier: Assembly-CSharp::GlepArmor
+  itemName: Glep Armor
+  description: +250 Health
+  icon: {fileID: 8336299028595247118, guid: 8d392f92b5ba5ad44bbb81aeb80365a4, type: 3}
+  baseCosts:
+  - type: 2
+    amount: 5
+  bonusHealth: 250
+  bonusAttack: 0
+  bonusRange: 0
+  bonusAttackSpeed: 0
+  rarity: 1
+  quantity: 1

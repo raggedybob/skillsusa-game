@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0cbbbe9ff2a2ac459d535e96abea0d8, type: 3}
+  m_Name: New Daedalus Feather
+  m_EditorClassIdentifier: Assembly-CSharp::DaedalusFeather
+  itemName: Daedalus Feather
+  description: Grants .1 Attack Speed everytime a the glep attacks.
+  icon: {fileID: 6835264571503150757, guid: 5f5febb41d495134f9ef426cdb97aba4, type: 3}
+  baseCosts: []
+  bonusHealth: 0
+  bonusAttack: 0
+  bonusRange: 0
+  bonusAttackSpeed: 0
+  rarity: 2
+  quantity: 1

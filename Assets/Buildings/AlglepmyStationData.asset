@@ -15,6 +15,7 @@ MonoBehaviour:
   buildingName: Alglepmy Station
   description: 'Produces 1 Glep Juice every 10 seconds.
 
+
     Costs: 100 Gloop, 10
     Gletal, 100 Money'
   icon: {fileID: -5286271519057278873, guid: 40c1a57f3068079429e694e961ffb67b, type: 3}

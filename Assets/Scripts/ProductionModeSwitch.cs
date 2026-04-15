@@ -6,6 +6,7 @@ public class ProductionToggleButton : MonoBehaviour
 {
     [SerializeField] private TMP_Text buttonText;
     [SerializeField] private Image buttonImage;
+    [SerializeField] private AudioClip toggleSoundClip;
     private Button button;
 
     private void Awake()
@@ -17,6 +18,7 @@ public class ProductionToggleButton : MonoBehaviour
 
     private void Toggle()
     {
+        SoundFXManager.Instance.PlaySFX(toggleSoundClip, transform, 1f);
         ProductionManager.Instance.ToggleMode();
         UpdateText();
     }

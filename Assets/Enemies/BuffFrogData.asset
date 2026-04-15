@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65725c6ffd8e320478b6e8a8575bf339, type: 3}
+  m_Name: BuffFrogData
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  enemyName: Buff Frog
+  baseHealth: 125
+  baseAttack: 6
+  baseRange: 3
+  baseAttackSpeed: 1
+  moveSpeed: 3
+  sprite: {fileID: 7814846129547618187, guid: eca1679bcd394a64782604469ebd555c, type: 3}
+  enemyPrefab: {fileID: 6714580671631495784, guid: 2aeedca701aed4a48a06fb0074863b4f, type: 3}

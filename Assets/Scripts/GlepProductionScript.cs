@@ -2,10 +2,11 @@ using UnityEngine;
 using System.Collections;
 public class GlepProductionScript : MonoBehaviour
 {
-    public float productionInterval = 30f; // time between each glep
+    public float productionInterval = 30f; 
     [SerializeField] private GameObject fountainParticles;
     [SerializeField] private GameObject glepPrefab;
-    [SerializeField] private ParticleSystem fountainParticleSystem; 
+    [SerializeField] private ParticleSystem fountainParticleSystem;
+    [SerializeField] private Transform factoryEnvironment;
     private void Awake()
     {
         fountainParticles.SetActive(false);
@@ -39,7 +40,7 @@ public class GlepProductionScript : MonoBehaviour
     }
     private void ProduceGlep()
     {
-        Instantiate(glepPrefab, transform.position + new Vector3(0, 10, 0), Quaternion.identity);
+        Instantiate(glepPrefab, transform.position + new Vector3(0, 10, 0), Quaternion.identity, factoryEnvironment.transform);
         if(productionInterval > 10f)
         {
             productionInterval -= 0.5f; 

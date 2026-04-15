@@ -1,3 +1,4 @@
+using NUnit.Framework.Interfaces;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class selectedItemUIScript : MonoBehaviour
     [SerializeField] private TMP_Text selectedDescription;
     public static selectedItemUIScript Instance;
     public ItemData CurrentItem { get; private set; }
+
 
     private void Awake()
     {
@@ -32,5 +34,6 @@ public class selectedItemUIScript : MonoBehaviour
         selectedIcon.sprite = data.icon;
         selectedName.text = data.itemName;
         selectedDescription.text = data.description;
-    }
+    } 
 }
+

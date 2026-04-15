@@ -20,7 +20,6 @@ public class MaterialManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
         foreach (MaterialType type in System.Enum.GetValues(typeof(MaterialType)))
         {
             resources[type] = 0;
@@ -30,8 +29,19 @@ public class MaterialManager : MonoBehaviour
 
     public void Add(MaterialType type, int amount)
     {
-        resources[type] += amount;
-        OnMaterialsChanged?.Invoke();
+        if (type != MaterialType.Money)
+        {
+            
+            int newValue = Mathf.Max(0, resources[type] + amount);
+            resources[type] = newValue;
+            OnMaterialsChanged?.Invoke();
+        }
+        else
+        {
+            // money CAN go negative
+            resources[type] += amount;
+            OnMaterialsChanged?.Invoke();
+        }
     }
 
     public bool CanAfford(List<MaterialCost> costs)
@@ -45,13 +55,18 @@ public class MaterialManager : MonoBehaviour
         return true;
     }
 
-    public void Spend(List<MaterialCost> costs)
+    public bool Spend(List<MaterialCost> costs)
     {
+        if (!CanAfford(costs))
+            return false;
+
         foreach (var cost in costs)
         {
-            resources[cost.type] -= cost.amount;
+            Add(cost.type, -cost.amount);
             OnMaterialsChanged?.Invoke();
         }
+
+        return true;
     }
 
     public int GetAmount(MaterialType type)
@@ -64,6 +79,7 @@ public class MaterialManager : MonoBehaviour
         if (resources[type] < amount) return false;
 
         resources[type] -= amount;
+        OnMaterialsChanged?.Invoke();
         return true;
     }
 }

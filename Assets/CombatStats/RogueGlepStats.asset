@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31bcc132d81a434c8ac063d4b724370, type: 3}
+  m_Name: RogueGlepStats
+  m_EditorClassIdentifier: Assembly-CSharp::CombatData
+  glepName: Rogue Glep
+  baseHealth: 100
+  baseAttack: 3
+  baseRange: 2
+  baseAttackSpeed: 3.5
+  dropRate: 0.1
+  glepPrefab: {fileID: 3402695163210083056, guid: 49dfa776a9bcb6c4baf81635443c5836, type: 3}
+  sprite: {fileID: -8121878102864569051, guid: ed39da445fd365049a0eeedfd2b39c0f, type: 3}
+  relic1: {fileID: 0}
+  relic2: {fileID: 0}
+  relic3: {fileID: 0}

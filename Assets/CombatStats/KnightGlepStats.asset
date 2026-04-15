@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31bcc132d81a434c8ac063d4b724370, type: 3}
+  m_Name: KnightGlepStats
+  m_EditorClassIdentifier: Assembly-CSharp::CombatData
+  glepName: Knight Glep
+  baseHealth: 200
+  baseAttack: 7
+  baseRange: 4
+  baseAttackSpeed: 0.5
+  dropRate: 0.2
+  glepPrefab: {fileID: 195930245485729328, guid: b7dc72c79733a0b4e9c79440ef71e2a1, type: 3}
+  sprite: {fileID: 9057061233363942403, guid: fcc4e2461bc0f234f8e116a4e5dc0cd4, type: 3}
+  item1: {fileID: 0}
+  item2: {fileID: 0}
+  item3: {fileID: 0}

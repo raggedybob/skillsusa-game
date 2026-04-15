@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,9 +15,7 @@ public class BuyItemScript : MonoBehaviour
     public void OnClick()
     {
         ItemData item = selectedItemUIScript.Instance.CurrentItem;
-
-        if (item == null)
-            return;
+        if (item == null) return;
 
         item.OnPurchase();
     }

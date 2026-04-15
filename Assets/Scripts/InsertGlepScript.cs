@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InsertGlepScript : MonoBehaviour
 {
@@ -9,9 +10,18 @@ public class InsertGlepScript : MonoBehaviour
     private float currentHoverTime = 0f;
     private PhysicsDrag2D currentGlep;
     private bool isActive = false;
+    private bool isCompleting = false;
+
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite activeSprite;
     private BuildingData data;
+
+    [SerializeField] private Slider hoverProgressSlider;
+    [SerializeField] private CanvasGroup sliderCanvasGroup;
+    [SerializeField] private RectTransform sliderTransform;
+
+    [SerializeField] private float fadeSpeed = 5f;
+    [SerializeField] private float scaleAmount = 1.1f; // how big it gets at full
 
     public Vector2Int GridPosition { get; private set; }
 
@@ -26,34 +36,103 @@ public class InsertGlepScript : MonoBehaviour
         return data;
     }
 
+    private void Start()
+    {
+        if (sliderCanvasGroup != null)
+            sliderCanvasGroup.alpha = 0f;
+
+        if (hoverProgressSlider != null)
+            hoverProgressSlider.value = 0f;
+
+        if (sliderTransform != null)
+            sliderTransform.localScale = Vector3.one;
+    }
+
+    private void Update()
+    {
+        // Fade logic
+        if (sliderCanvasGroup != null)
+        {
+            float targetAlpha = (currentHoverTime > 0f || isCompleting) && !isActive ? 1f : 0f;
+            sliderCanvasGroup.alpha = Mathf.Lerp(sliderCanvasGroup.alpha, targetAlpha, Time.deltaTime * fadeSpeed);
+        }
+
+        // Scale based on progress
+        if (sliderTransform != null && hoverProgressSlider != null)
+        {
+            float scale = Mathf.Lerp(1f, scaleAmount, hoverProgressSlider.value);
+            sliderTransform.localScale = new Vector3(scale, scale, scale);
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         PhysicsDrag2D glep = other.GetComponent<PhysicsDrag2D>();
 
         if (glep != null && glep.IsBeingDragged)
         {
-            if (isActive)
+            if (isActive || isCompleting)
                 return;
+
             currentHoverTime += Time.deltaTime;
+
+            if (hoverProgressSlider != null)
+                hoverProgressSlider.value = Mathf.Clamp01(currentHoverTime / hoverTimeRequired);
 
             if (currentHoverTime >= hoverTimeRequired && gameObject.GetComponent<SpriteRenderer>().color == Color.white)
             {
-                ActivateBuilding(glep);
+                StartCoroutine(CompleteAndActivate(glep));
             }
         }
-        if (!glep.IsBeingDragged)
+
+        if (glep != null && !glep.IsBeingDragged)
         {
-            currentHoverTime = 0f;
+            ResetHover();
         }
     }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         PhysicsDrag2D glep = other.GetComponent<PhysicsDrag2D>();
 
         if (glep != null)
         {
-            currentHoverTime = 0f;
+            ResetHover();
         }
+    }
+
+    private void ResetHover()
+    {
+        if (isCompleting) return;
+
+        currentHoverTime = 0f;
+
+        if (hoverProgressSlider != null)
+            hoverProgressSlider.value = 0f;
+    }
+
+    private IEnumerator CompleteAndActivate(PhysicsDrag2D glep)
+    {
+        isCompleting = true;
+
+        // Lock at full
+        if (hoverProgressSlider != null)
+            hoverProgressSlider.value = 1f;
+
+        // Small pause so player sees it filled
+        yield return new WaitForSeconds(0.2f);
+
+        ActivateBuilding(glep);
+
+        // Let it fade out while full
+        yield return new WaitForSeconds(0.3f);
+
+        // Reset after fade
+        currentHoverTime = 0f;
+        isCompleting = false;
+
+        if (hoverProgressSlider != null)
+            hoverProgressSlider.value = 0f;
     }
 
     private void ActivateBuilding(PhysicsDrag2D glep)
@@ -70,6 +149,7 @@ public class InsertGlepScript : MonoBehaviour
 
             spriteRenderer.sprite = activeSprite;
             isActive = true;
+
             StartCoroutine(ProductionLoop());
         }
     }
@@ -82,7 +162,6 @@ public class InsertGlepScript : MonoBehaviour
 
             if (ProductionManager.Instance.CurrentMode == ProductionMode.Materials)
             {
-                // Normal production
                 MaterialManager.Instance.Add(
                     data.producesMaterial,
                     data.amountPerTick
@@ -90,7 +169,6 @@ public class InsertGlepScript : MonoBehaviour
             }
             else
             {
-                // Money production instead
                 int sellValue = GetSellValue(data.producesMaterial);
 
                 MaterialManager.Instance.Add(
@@ -100,6 +178,7 @@ public class InsertGlepScript : MonoBehaviour
             }
         }
     }
+
     private int GetSellValue(MaterialType type)
     {
         switch (type)

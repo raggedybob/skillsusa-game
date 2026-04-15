@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 public class PlayButtonScript : MonoBehaviour
 {
     [SerializeField] private GameObject PauseMenu;
-    public void OnClicked()
+    public void OnClick()
     {
+        Debug.Log("Play Button Clicked");
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
-            Debug.Log("Game Started");
             SceneManager.LoadScene("OutsideScene");
         }
         else if (SceneManager.GetActiveScene().name == "EndScene" || SceneManager.GetActiveScene().name == "GameOver")
@@ -17,6 +17,7 @@ public class PlayButtonScript : MonoBehaviour
         }
         else
         {
+            EscapePauseMenuScript.isPaused = false;
             PauseMenu.SetActive(false);
             Time.timeScale = 1f;
         }

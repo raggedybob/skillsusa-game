@@ -41,7 +41,9 @@ public class BuildManagerScript : MonoBehaviour
     public void ExitBuildMode()
     {
         IsBuildMode = false;
+        ClearSelectedBuilding(); // already destroys preview too
     }
+
     private void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());

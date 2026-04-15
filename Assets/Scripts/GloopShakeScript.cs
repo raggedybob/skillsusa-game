@@ -8,6 +8,7 @@ public class GloopShakeScript : MonoBehaviour
     [SerializeField] private float MovementPerGloop = 10f;
     [SerializeField] private float MovementTillNextGloop = 10f;
     [SerializeField] private ParticleSystem GloopingParticles;
+    [SerializeField] private AudioClip gloopSoundClip;
     void Awake()
     {
         lastPosition = transform.position;

@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 1086277161}
   - component: {fileID: 1086277160}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -693,6 +693,10 @@ PrefabInstance:
     - target: {fileID: 842651748694733449, guid: a7432796c41a0da4abe46e122973f62a, type: 3}
       propertyPath: m_Name
       value: PlayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3906180659421792437, guid: a7432796c41a0da4abe46e122973f62a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
       objectReference: {fileID: 0}
     - target: {fileID: 6897819863796406774, guid: a7432796c41a0da4abe46e122973f62a, type: 3}
       propertyPath: m_Pivot.x
