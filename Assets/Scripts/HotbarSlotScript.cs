@@ -48,27 +48,38 @@ public class HotbarSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (InventoryUIScript.Instance.isEquipping)
         {
-            Debug.Log("I DETECT THIS CLICK!!");
-            GlepUnitScript glep = assignedGlep;
-            if (!hasGlep || assignedGlep == null) return;
+            if (!hasGlep || assignedGlep == null)
+            {
+                Debug.LogWarning($"Slot {slotIndex}: isEquipping but no glep assigned!");
+                return;
+            }
 
             ItemData item = InventoryUIScript.Instance.selectedItem;
-            glep.equippedItems.Add(item);
-            item.OnEquip(glep.combatScript);
+            if (item == null)
+            {
+                Debug.LogWarning("isEquipping but selectedItem is null!");
+                return;
+            }
+
+            assignedGlep.equippedItems.Add(item);
+            item.OnEquip(assignedGlep.combatScript);
 
             InventoryUIScript.Instance.isEquipping = false;
             InventoryManager.Instance.RemoveItem(item);
 
-            Debug.Log($"Equipped {item.itemName} to glep!");
+            if (hotbarHighlight != null) hotbarHighlight.SetActive(false);
+            if (ClickOnGlepText != null) ClickOnGlepText.SetActive(false);
 
-            hotbarHighlight.SetActive(false);
-            ClickOnGlepText.SetActive(false);
+            Debug.Log($"Equipped {item.itemName} to {assignedGlep.name}!");
+            UpdateGlepStats(assignedGlep);
+            DisplayGlepStatsScript.Instance.UpdateSelectedDisplay(assignedGlep.data);   
             return;
         }
 
         if (hasGlep)
         {
             UpdateGlepStats(CombatInventoryManager.Instance.slots[slotIndex].GetComponent<GlepUnitScript>());
+            DisplayGlepStatsScript.Instance.UpdateSelectedDisplay(assignedGlep.data);
             CombatInventoryManager.Instance.SelectSlot(slotIndex);
             glepStatsGroup.alpha = 1f;
             glepStatsGroup.interactable = true;

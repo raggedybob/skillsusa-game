@@ -16,7 +16,13 @@ public class BuyItemScript : MonoBehaviour
     {
         ItemData item = selectedItemUIScript.Instance.CurrentItem;
         if (item == null) return;
-
+        if (!MaterialManager.Instance.CanAfford(item.baseCosts)) 
+        {
+            Debug.Log("Cannot afford item: " + item.itemName);
+            return;
+        }   
+        MaterialManager.Instance.Spend(item.baseCosts);
+        InventoryManager.Instance.AddItem(item);
         item.OnPurchase();
     }
 }

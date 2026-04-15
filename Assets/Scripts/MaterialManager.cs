@@ -6,7 +6,7 @@ public class MaterialManager : MonoBehaviour
 {
     public static MaterialManager Instance;
 
-    [SerializeField] private Dictionary<MaterialType, int> resources =
+    private Dictionary<MaterialType, int> resources =
         new Dictionary<MaterialType, int>();
 
     public event System.Action OnMaterialsChanged;
