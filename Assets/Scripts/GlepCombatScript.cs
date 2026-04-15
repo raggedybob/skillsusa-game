@@ -123,7 +123,7 @@ public class GlepCombatScript : MonoBehaviour
         float t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime * 8f;
+            t += Time.deltaTime * (8f * (attackSpeed + bonusAttackSpeed));
             transform.position = Vector3.Lerp(startPos, lungePos, t);
             yield return null;
         }
@@ -143,17 +143,23 @@ public class GlepCombatScript : MonoBehaviour
         t = 0f;
         while (t < 1f)
         {
-            t += Time.deltaTime * 8f;
+            t += Time.deltaTime * (8f * (attackSpeed + bonusAttackSpeed));
             transform.position = Vector3.Lerp(lungePos, startPos, t);
             yield return null;
         }
 
         transform.position = startPos;
 
-        yield return new WaitForSeconds(1f / attackSpeed);
+        yield return new WaitForSeconds(GetCurrentAttackDelay());
         isAttacking = false;
     }
+    float GetCurrentAttackDelay()
+    {
+        float speed = attackSpeed + bonusAttackSpeed;
+        float delay = 1f / speed;
 
+        return Mathf.Max(0.1f, delay); // never faster than 0.1s
+    }
     public void TakeDamage(float amount)
     {
         SoundFXManager.Instance.PlaySFX(damagedSoundClip, transform, 1f);

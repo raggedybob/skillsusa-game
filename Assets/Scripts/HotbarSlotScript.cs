@@ -48,9 +48,8 @@ public class HotbarSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (InventoryUIScript.Instance.isEquipping)
         {
-            if (!hasGlep) return;
-            GlepUnitScript glep = CombatInventoryManager.Instance.slots[slotIndex]
-                .GetComponent<GlepUnitScript>();
+            GlepUnitScript glep = assignedGlep;
+            if (!hasGlep || assignedGlep == null) return;
 
             ItemData item = InventoryUIScript.Instance.selectedItem;
             glep.equippedItems.Add(item);
@@ -58,7 +57,9 @@ public class HotbarSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             InventoryUIScript.Instance.isEquipping = false;
             InventoryManager.Instance.RemoveItem(item);
+
             Debug.Log($"Equipped {item.itemName} to glep!");
+
             hotbarHighlight.SetActive(false);
             ClickOnGlepText.SetActive(false);
             return;
@@ -95,9 +96,12 @@ public class HotbarSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             GlepUnitScript glep = hit.collider.GetComponent<GlepUnitScript>();
             assignedGlep = glep;
-            glep.combatScript.OnDeath += OnGlepDied;
-            if (glep != null)
+
+            if (glep != null && glep.combatScript != null)
             {
+                assignedGlep = glep;
+                glep.combatScript.OnDeath += OnGlepDied;
+
                 CombatInventoryManager.Instance.AssignToSlot(glep, slotIndex);
                 slotPortrait.sprite = glep.data.sprite;
                 slotPortrait.color = Color.white;

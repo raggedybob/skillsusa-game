@@ -31,7 +31,7 @@ public class ScenariosManager : MonoBehaviour
 
     void ScheduleNextEvent()
     {
-        float delay = 1f;
+        float delay = 120f;
         Invoke(nameof(TriggerRandomScenario), delay);
     }
 
