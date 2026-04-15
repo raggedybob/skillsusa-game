@@ -14,12 +14,21 @@ public class InventoryUIScript : MonoBehaviour
     [SerializeField] private GameObject equipButton;
     [SerializeField] private GameObject hotbarHighlight; // optional: highlight hotbar when equipping
     [SerializeField] private GameObject ClickOnGlepText; // optional: show when equipping
+    [SerializeField] private GameObject PressSpacetoCancel; // optional: show when equipping
     public ItemData selectedItem; 
 
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+    }
+
+    private void Update()
+    {
+        if (isEquipping && Input.GetKeyDown(KeyCode.Space))
+        {
+            CancelEquip();
+        }
     }
 
     public void RefreshUI()
@@ -51,6 +60,16 @@ public class InventoryUIScript : MonoBehaviour
         isEquipping = true;
         hotbarHighlight.SetActive(true);
         ClickOnGlepText.SetActive(true);
+        PressSpacetoCancel.SetActive(true);
         Debug.Log("Select a glep to equip to!");
+    }
+
+    public void CancelEquip()
+    {
+        isEquipping = false;
+        hotbarHighlight.SetActive(false);
+        ClickOnGlepText.SetActive(false);
+        PressSpacetoCancel.SetActive(false);
+        Debug.Log("Cancelled equip!");
     }
 }

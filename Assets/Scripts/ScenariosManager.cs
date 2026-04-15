@@ -31,7 +31,7 @@ public class ScenariosManager : MonoBehaviour
 
     void ScheduleNextEvent()
     {
-        float delay = Random.Range(60f, 90f);
+        float delay = 1f;
         Invoke(nameof(TriggerRandomScenario), delay);
     }
 
@@ -52,7 +52,7 @@ public class ScenariosManager : MonoBehaviour
     public void ShowScenario(ScenarioData scenario)
     {
         scenarioPanel.SetActive(true);
-
+        Time.timeScale = 0f; // Pause the game
         titleText.text = scenario.title;
         descriptionText.text = scenario.description;
 
@@ -94,6 +94,7 @@ public class ScenariosManager : MonoBehaviour
 
     void ApplyChoice(ScenarioChoice choice)
     {
+        Time.timeScale = 1f;
         if (choice.requiredCosts != null && choice.requiredCosts.Length > 0)
         {
             MaterialManager.Instance.Spend(
@@ -115,7 +116,7 @@ public class ScenariosManager : MonoBehaviour
 
     IEnumerator TriggerFollowUp(ScenarioData next)
     {
-        yield return new WaitForSeconds(60f);
+        yield return new WaitForSeconds(120f);
         ShowScenario(next);
     }
 }

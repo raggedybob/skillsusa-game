@@ -38,11 +38,11 @@ public class OpenInventoryMenuScript : MonoBehaviour
         }
         else if (createMenu.transform.localPosition == openPosition && !inventoryMenu.activeSelf)
         {
+            inventoryMenu.SetActive(true);
             InventoryMenuBar.SetActive(true);
             BuildingMenuBar.SetActive(false);
             UpgradeMenuBar.SetActive(false);
             shopMenu.SetActive(false);
-            InventoryMenuBar.SetActive(true);
         }
     }
 }
