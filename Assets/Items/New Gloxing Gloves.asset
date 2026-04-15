@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: New Gloxing Gloves
   m_EditorClassIdentifier: Assembly-CSharp::GloxingGloves
   itemName: Gloxing Gloves
-  description: Gives +5 attack
+  description: 'Gives +5 attack
+
+    Costs 25 Gloop '
   icon: {fileID: -8521216156955137473, guid: 1ccd0be69e59de449999e2fabe7aa073, type: 3}
   baseCosts:
   - type: 0

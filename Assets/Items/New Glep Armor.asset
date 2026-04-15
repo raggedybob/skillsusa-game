@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: New Glep Armor
   m_EditorClassIdentifier: Assembly-CSharp::GlepArmor
   itemName: Glep Armor
-  description: +250 Health
+  description: '+250 Health
+
+    Costs 5 Gletal'
   icon: {fileID: 8336299028595247118, guid: 8d392f92b5ba5ad44bbb81aeb80365a4, type: 3}
   baseCosts:
   - type: 2

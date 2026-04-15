@@ -48,6 +48,7 @@ public class HotbarSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (InventoryUIScript.Instance.isEquipping)
         {
+            Debug.Log("I DETECT THIS CLICK!!");
             GlepUnitScript glep = assignedGlep;
             if (!hasGlep || assignedGlep == null) return;
 

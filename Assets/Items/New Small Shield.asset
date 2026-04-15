@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: New Small Shield
   m_EditorClassIdentifier: Assembly-CSharp::SmallShield
   itemName: Small Shield
-  description: 'Gives a glep 100 HP. '
+  description: 'Gives a glep 100 HP.
+
+    Costs 25 Glumber '
   icon: {fileID: 245246050826224120, guid: 2152df777ffb70940b084facadb269aa, type: 3}
   baseCosts:
   - type: 1

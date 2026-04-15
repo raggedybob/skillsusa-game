@@ -13,6 +13,11 @@ public class GlepUnitScript : MonoBehaviour
     [SerializeField] private PhysicsDrag2D factoryScript1;
     [SerializeField] private GloopShakeScript factoryScript2;
 
+    void Awake()
+    {
+        combatScript = GetComponent<GlepCombatScript>();
+    }
+
     public void EnterFactory(Vector3 factoryPos)
     {
         currentState = GlepState.Factory;

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: New Glep Roids
   m_EditorClassIdentifier: Assembly-CSharp::GlepRoids
   itemName: GlepRoids
-  description: Buffs LITERALLY EVERYTHING
+  description: 'Buffs LITERALLY EVERYTHING
+
+    Costs 200 Gloop, 3 Glep Juice'
   icon: {fileID: -9169032310186722700, guid: 68ceaf6abc60202479b991380d55e773, type: 3}
   baseCosts:
   - type: 0

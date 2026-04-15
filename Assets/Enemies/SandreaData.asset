@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Sandrea
   baseHealth: 100
-  baseAttack: 10
+  baseAttack: 5
   baseRange: 15
   baseAttackSpeed: 1
   moveSpeed: 2
